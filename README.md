@@ -1,3 +1,6 @@
+# Capstone-Project
+Edureka Capstone Project
+
 # Translator + Audio Generator
 
 A Streamlit application that translates text or uploaded documents into another language and generates spoken audio in MP3 format.
