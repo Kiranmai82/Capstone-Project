@@ -105,33 +105,39 @@ If the key is missing or invalid, you will see an error message in the UI.
 **streamlit run app/frontend/app.py**
 
 - Confirm the UI Loads
-You should see:
+  You should see:
 
-Text translation tab
+  Text translation tab
 
-File upload tab
+  File upload tab
+  
+  Language dropdown
 
-Language dropdown
+  Translate button
 
-Translate button
+  Generate audio button
 
-Generate audio button
-
-Download audio button
+  Download audio button
 
 ## Usage
 
-1.Open the Streamlit app in your browser.
-2.Choose one tab:
-   Upload a File to translate text from a file.
-   Translate Text to enter text manually.
-3.Select the target output language.
-4.Click Translate.
-5.After translation completes, click Generate Audio.
-6.Download the MP3 audio by clicking Download Audio.
+1. Open the Streamlit app in your browser.
+
+2. Choose one tab:
+   - **Upload a File** to translate text from a file.
+   - **Translate Text** to enter text manually.
+
+3. Select the target output language.
+
+4. Click **Translate**.
+
+5. After translation completes, click **Generate Audio**.
+
+6. Download the MP3 audio by clicking **Download Audio**.
+
 
 ## Project Structure
-'''
+```  
 Capstone_Project/
 │
 ├── app.py                         # Main Streamlit application
@@ -159,7 +165,7 @@ Capstone_Project/
 │
 ├── requirements.txt               # Python dependencies
 └── README.md                      # Project documentation
-'''
+```  
 
 ## How the App Works Internally
 
