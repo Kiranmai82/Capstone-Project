@@ -145,86 +145,71 @@ response = client.models.generate_content(
     contents=f"Translate to {selected_label}: {text}"
 )
 ```
-Notes
-Only translation uses Gemini API
+## Notes
+- Only translation uses Gemini API
 
-Text‑to‑speech uses gTTS, not Gemini
+- Text‑to‑speech uses gTTS, not Gemini
 
-6. Considerations
-API Key Security
-Use environment variables
+## 6. Considerations
+**API Key Security**
+- Use environment variables
 
-Never commit API keys to GitHub
+- Never commit API keys to GitHub
 
-File Size
-Large PDFs/Excels may slow extraction
+**File Size**
+- Large PDFs/Excels may slow extraction
 
-Streamlit has upload size limits
+- Streamlit has upload size limits
 
-Language Support
-Translation quality depends on Gemini
+**Language Support**
+- Translation quality depends on Gemini
 
-gTTS supports many languages but not all
+- gTTS supports many languages but not all
 
-Internet Requirement
+**Internet Requirement**
 Gemini API and gTTS both require internet access
 
-7. Limitations
-No offline translation or TTS
+## 7. Limitations
+- No offline translation or TTS
 
-MP3 only
+- MP3 only
 
-Scanned PDFs may fail
+- Scanned PDFs may fail
 
-No batch translation
+- No batch translation
 
-CSV/Excel must contain readable text
+- CSV/Excel must contain readable text
 
-8. Challenges Faced
-Handling Multiple File Types
-Different parsing logic required for:
-
+## 8. Challenges Faced
+**Handling Multiple File Types**
+- Different parsing logic required for:
 PDFs
-
 CSVs
-
 Excel files
 
-Managing Session State
-Needed careful handling to store:
-
+**Managing Session State**
+- Needed careful handling to store:
 extracted text
-
 translated text
-
 audio bytes
-
 prevent overwriting between tabs
 
-Managing Streamlit Widget Keys
-Multiple tabs required unique keys
+**Managing Streamlit Widget Keys**
+- Multiple tabs required unique keys
+- Prevented widget conflicts
+- Ensured stable UI behavior
 
-Prevented widget conflicts
-
-Ensured stable UI behavior
-
-Gemini API Response Handling
+**Gemini API Response Handling**
 Ensured:
+- correct prompt formatting
+- safe error handling
+- stable client initialization
 
-correct prompt formatting
-
-safe error handling
-
-stable client initialization
-
-Text‑to‑Speech Integration (gTTS)
+**Text‑to‑Speech Integration (gTTS)**
 Handled:
-
-MP3 generation
-
-Temporary file storage
-
-Browser‑safe downloads
+- MP3 generation
+- Temporary file storage
+- Browser‑safe downloads
 
 
 
