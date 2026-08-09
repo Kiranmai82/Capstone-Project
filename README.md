@@ -131,7 +131,7 @@ Download audio button
 6.Download the MP3 audio by clicking Download Audio.
 
 ## Project Structure
-
+'''
 Capstone_Project/
 │
 ├── app.py                         # Main Streamlit application
@@ -159,8 +159,7 @@ Capstone_Project/
 │
 ├── requirements.txt               # Python dependencies
 └── README.md                      # Project documentation
-
-
+'''
 
 ## How the App Works Internally
 
