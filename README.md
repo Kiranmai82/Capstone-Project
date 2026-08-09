@@ -321,4 +321,6 @@ Whenever you push changes to GitHub:
 
 - Restarts the app
 
+Working public URL: https://capstone-project-cyqesmecxmwzkbv8tv3capp.streamlit.app/ 
+
 No manual deployment commands are required.
