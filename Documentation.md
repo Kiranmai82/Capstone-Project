@@ -137,16 +137,14 @@ MP3 audio stored in st.session_state.audio_file
 ↓
 Download button provides MP3 file
 
+
 ---
-
-## 5. Gemini API Usage
-
-### **Translation Example**
 ```python
 response = client.models.generate_content(
     model="gemini-1.5-flash",
     contents=f"Translate to {selected_label}: {text}"
 )
+```
 Notes
 Only translation uses Gemini API
 
@@ -212,6 +210,7 @@ Ensured stable UI behavior
 
 Gemini API Response Handling
 Ensured:
+
 correct prompt formatting
 
 safe error handling
@@ -226,6 +225,8 @@ MP3 generation
 Temporary file storage
 
 Browser‑safe downloads
+
+
 
 
 
