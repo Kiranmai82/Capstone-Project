@@ -85,7 +85,7 @@ Copy the key
 Step 2 -- Set your Gemini API key as an environment variable:
 
 For Windows (PowerShell)
-powershell
+
 setx GEMINI_API_KEY "your_api_key_here"
 
 For macOS / Linux
@@ -100,11 +100,11 @@ If the key is missing or invalid, you will see an error message in the UI.
 
 ## Running the App
 
-Start the Streamlit application using below command in the terminal
+- Start the Streamlit application using below command in the terminal:
 
-streamlit run app/frontend/app.py
+**streamlit run app/frontend/app.py**
 
-Confirm the UI Loads
+- Confirm the UI Loads
 You should see:
 
 Text translation tab
@@ -134,35 +134,31 @@ Download audio button
 
 Capstone_Project/
 │
-├── app.py                         # Main Streamlit application (if top-level)
+├── app.py                         # Main Streamlit application
 │
 ├── tabs/                          # UI tabs for Streamlit
-│   ├── __init__.py
 │   ├── file_upload_tab.py         # File upload + extraction + translation UI
 │   └── text_translate_tab.py      # Text input + translation UI
 │
-├── buttons/                       # (Optional) UI button logic (legacy)
-│   ├── __init__.py
-│   ├── generate_audio_button.py   # Old audio button logic
-│   └── translate_button.py        # Old translation button logic
+├── buttons/                       # Button logic (translate + audio)
+│   ├── translate_button.py
+│   └── generate_audio_button.py
 │
-├── services/                      # Backend logic (NO Streamlit)
-│   ├── __init__.py
+├── services/                      # Backend logic (no Streamlit)
 │   ├── translation_service.py     # Gemini translation logic
-│   ├── text_to_speech.py          # Audio generation logic
-│   ├── text_extraction_service.py # PDF/Excel/CSV extraction logic
+│   ├── text_to_speech.py          # gTTS audio generation
+│   ├── text_extraction_service.py # PDF/CSV/Excel extraction
 │   └── gemini_client.py           # Gemini API client setup
 │
-├── languages.py                   # Language code mappings (config)
-│
 ├── utils/                         # Helper utilities
-│   ├── __init__.py
 │   ├── pdf_utils.py               # PDF parsing helpers
 │   ├── excel_utils.py             # Excel parsing helpers
 │   └── csv_utils.py               # CSV parsing helpers
 │
+├── languages.py                   # Language code mappings
+│
 ├── requirements.txt               # Python dependencies
-└── README.md                      # Documentation (optional)
+└── README.md                      # Project documentation
 
 
 
@@ -278,6 +274,6 @@ required separate parsing logic and error handling.
 
 4. Gemini API Response Handling
    Ensuring:
-   - correct prompt formatting
-   - safe error handling
-   - stable API client initialization
+  - correct prompt formatting
+  - safe error handling
+  - stable API client initialization
