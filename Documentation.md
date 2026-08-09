@@ -1,124 +1,231 @@
-## Technical Documentation — Translator + Audio Generator
+# Technical Documentation — Translator + Audio Generator
 
-1. Purpose
-This application provides multilingual translation and text‑to‑speech functionality through a Streamlit interface. It supports text input, file uploads, translation, audio generation, and MP3 download.
+This document explains the internal architecture, data flow, module responsibilities, and development considerations for the Translator + Audio Generator application.
 
-2. System Architecture
-Code
+---
+
+## 1. Purpose
+
+The application provides multilingual translation and text‑to‑speech functionality through a Streamlit interface.  
+It supports text input, file uploads, translation using the Gemini API, audio generation using gTTS, and MP3 download.
+
+---
+
+## 2. System Architecture
+
 Streamlit UI (tabs)
-        ↓
-Button handlers
-        ↓
-Backend services
-        ↓
-Gemini API / File parsers
-
-Characteristics:
-- UI triggers backend operations
-
-- Buttons contain workflow logic
-
-- Session state stores intermediate results
-
-- Services handle translation, TTS, and extraction
-
-3. Module Responsibilities
-app.py
-- Initializes Streamlit
-
-- Renders tabs
-
-- Manages session state
-
-tabs/
-- text_translate_tab.py → text input + translation
-
-- file_upload_tab.py → file upload + extraction + translation
-
-buttons/
-- translate_button.py → calls translation service
-
-- generate_audio_button.py → calls TTS service
-
-services/
-- translation_service.py → Gemini translation
-
-- text_to_speech.py → TTS (gTTS or Gemini)
-
-- text_extraction_service.py → PDF/CSV/Excel parsing
-
-- gemini_client.py → API client setup
-
-utils/
-PDF, Excel, CSV parsing helpers
-
-4. How data flows
-
-1. User selects a tab in app.py
-   - file_upload_tab.py uploads and extracts text
-   - text_translate_tab.py collects manual text
-2. User picks a language from languages.py
-3. translate_button.py calls translation_service.py
-   - uses gemini_client.py
-4. Translated text is stored in st.session_state.translated_output
-5. generate_audio_button.py calls text_to_speech.py
-6. Resulting MP3 audio is stored in st.session_state.audio_file
-7. Download button serves the generated audio
+↓
+Button Handlers
+↓
+Backend Services
+↓
+Gemini API / File Parsers
 
 
-5. Gemini API Usage
-Translation
-python
+### Architecture Characteristics
+- UI triggers backend operations  
+- Buttons contain workflow logic  
+- Session state stores intermediate results  
+- Services handle translation, TTS, and file extraction  
+
+---
+
+## 3. Module Responsibilities
+
+### **app.py**
+- Initializes Streamlit  
+- Renders tabs  
+- Manages session state  
+
+---
+
+### **tabs/**
+#### `text_translate_tab.py`
+- Accepts manual text input  
+- Sends text for translation  
+
+#### `file_upload_tab.py`
+- Handles file uploads  
+- Extracts text from PDF/CSV/Excel  
+- Sends extracted text for translation  
+
+---
+
+### **buttons/**
+#### `translate_button.py`
+- Reads text from session state  
+- Calls translation service  
+- Stores translated output  
+
+#### `generate_audio_button.py`
+- Reads translated text  
+- Calls gTTS  
+- Stores MP3 audio bytes  
+
+---
+
+### **services/**
+#### `translation_service.py`
+- Sends text to Gemini API  
+- Receives translated output  
+
+#### `text_to_speech.py`
+- Converts text to speech using **gTTS**  
+- Returns MP3 audio bytes  
+
+#### `text_extraction_service.py`
+- Detects file type  
+- Extracts text using appropriate utility  
+
+#### `gemini_client.py`
+- Initializes Gemini API client  
+- Handles authentication  
+
+---
+
+### **utils/**
+- `pdf_utils.py` → PDF parsing  
+- `excel_utils.py` → Excel parsing  
+- `csv_utils.py` → CSV parsing  
+
+---
+
+## 4. Data Flow
+
+### **A. Text Translation Flow**
+
+User enters text
+↓
+text_translate_tab.py
+↓
+translate_button.py
+↓
+translation_service.py → Gemini API
+↓
+Translated text stored in st.session_state.translated_output
+↓
+Displayed in UI
+
+
+---
+
+### **B. File Upload Flow**
+User uploads file
+↓
+file_upload_tab.py
+↓
+text_extraction_service.py
+↓
+utils (PDF/CSV/Excel parsers)
+↓
+Extracted text stored in session state
+↓
+translate_button.py → translation_service.py
+↓
+Translated text displayed in UI
+
+---
+
+### **C. Audio Generation Flow**
+User clicks Generate Audio
+↓
+generate_audio_button.py
+↓
+text_to_speech.py → gTTS
+↓
+MP3 audio stored in st.session_state.audio_file
+↓
+Download button provides MP3 file
+
+---
+
+## 5. Gemini API Usage
+
+### **Translation Example**
+```python
 response = client.models.generate_content(
     model="gemini-1.5-flash",
     contents=f"Translate to {selected_label}: {text}"
 )
+Notes
+Only translation uses Gemini API
+
+Text‑to‑speech uses gTTS, not Gemini
 
 6. Considerations
 API Key Security
 Use environment variables
 
-Never commit keys to GitHub
+Never commit API keys to GitHub
 
-**File Size**
-Large PDFs/Excels may slow processing
+File Size
+Large PDFs/Excels may slow extraction
 
-**Language Support**
-Depends on Gemini model
+Streamlit has upload size limits
 
-TTS may not support all languages
+Language Support
+Translation quality depends on Gemini
 
-**Internet Requirement**
-Gemini API requires connectivity
+gTTS supports many languages but not all
+
+Internet Requirement
+Gemini API and gTTS both require internet access
 
 7. Limitations
-- No offline translation/TTS
+No offline translation or TTS
 
-- No batch processing
+MP3 only
 
-- MP3 only
+Scanned PDFs may fail
 
-- Scanned PDFs may fail
+No batch translation
 
-- CSV/Excel must contain readable text
+CSV/Excel must contain readable text
 
 8. Challenges Faced
-**Handling Multiple File Types**
-- Different parsing logic required for PDFs, CSVs, and Excel.
+Handling Multiple File Types
+Different parsing logic required for:
 
-**Managing Session State**
-Needed to store:
-- extracted text
-- translated text
-- audio bytes
+PDFs
 
-**Managing Streamlit Widget Keys**
-- Multiple tabs required unique keys
-- Prevented widget conflicts
+CSVs
 
-**Gemini API Response Handling**
+Excel files
+
+Managing Session State
+Needed careful handling to store:
+
+extracted text
+
+translated text
+
+audio bytes
+
+prevent overwriting between tabs
+
+Managing Streamlit Widget Keys
+Multiple tabs required unique keys
+
+Prevented widget conflicts
+
+Ensured stable UI behavior
+
+Gemini API Response Handling
 Ensured:
-- correct prompt formatting
-- safe error handling
-- stable client initialization
+correct prompt formatting
+
+safe error handling
+
+stable client initialization
+
+Text‑to‑Speech Integration (gTTS)
+Handled:
+
+MP3 generation
+
+Temporary file storage
+
+Browser‑safe downloads
+
+
 
