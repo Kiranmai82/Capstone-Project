@@ -282,3 +282,43 @@ required separate parsing logic and error handling.
   - correct prompt formatting
   - safe error handling
   - stable API client initialization
+
+## Deployment
+This application is deployed on Streamlit Cloud.
+Any push to the main branch automatically triggers a redeployment.
+
+**Python Version**
+The Python version used by Streamlit Cloud is python-3.12. We can update it under the app settings.
+
+**Dependencies**
+All required Python packages are listed in requirements.txt.
+Streamlit Cloud installs these automatically during deployment.
+
+**Secrets (API Keys)**
+Sensitive keys (e.g., Gemini API key) are not stored in the repository.
+They must be added in the Streamlit Cloud dashboard:
+
+1. Go to https://share.streamlit.io
+
+2. Open your app
+
+3. Go to Settings → Secrets
+
+4. Add your key in TOML format:
+
+GEMINI_API_KEY = "your-real-key-here"
+
+**Automatic Redeployment**
+Whenever you push changes to GitHub:
+
+- Streamlit Cloud pulls the latest code
+
+- Installs dependencies
+
+- Applies the Python version from runtime.txt
+
+- Loads secrets
+
+- Restarts the app
+
+No manual deployment commands are required.
