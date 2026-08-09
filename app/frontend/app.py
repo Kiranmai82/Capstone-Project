@@ -49,7 +49,7 @@ if "translated_output" not in st.session_state:
 
 
 
-title = "Welcome to the translator app"
+title = "Translate and Generate Audio"
 st.title(title)
 
 
