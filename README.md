@@ -102,9 +102,10 @@ If the key is missing or invalid, you will see an error message in the UI.
 
 - Start the Streamlit application using below command in the terminal:
 
-**streamlit run app/frontend/app.py**
+   **streamlit run app/frontend/app.py**
 
 - Confirm the UI Loads
+  
   You should see:
   - Text translation tab
   - File upload tab
@@ -179,14 +180,14 @@ Capstone_Project/
 
 ## Technologies Used
 
-Python
-Streamlit
-Gemini API
-gTTS 
-PyPDF2
-Pandas
-OpenPyXL
-CSV utilities
+- Python
+- Streamlit
+- Gemini API
+- gTTS 
+- PyPDF2
+- Pandas
+- OpenPyXL
+- CSV utilities
 
 ## Error Handling
 
