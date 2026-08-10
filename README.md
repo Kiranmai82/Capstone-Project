@@ -126,27 +126,27 @@ If the key is missing or invalid, you will see an error message in the UI.
    - **Upload a File** to translate text from a file.
    - **Translate Text** to enter text manually.
    <p align="center">
-  <img src="screenshots/Homepage.png" alt="Screenshot" style= "width:250px"; "border: 3px solid #4CAF50; border-radius: 8px;">
+  <img src="screenshots/Homepage.png" alt="Screenshot" style= "width:400px"; "border: 3px solid #4CAF50; border-radius: 8px;">
 </p>
 
 4. Select the target output language.
    <p align="center">
-  <img src="screenshots/drop-down_language.png" alt="Screenshot" style= "width:250px"; "border: 3px solid #4CAF50; border-radius: 8px;">
+  <img src="screenshots/drop-down_language.png" alt="Screenshot" style= "width:400px"; "border: 3px solid #4CAF50; border-radius: 8px;">
 </p>
 
 6. Click **Translate**.
    <p align="center">
-  <img src="screenshots/Text Translating_spin_wheel.png" alt="Screenshot" style= "width:250px"; "border: 3px solid #4CAF50; border-radius: 8px;">
+  <img src="screenshots/Text Translating_spin_wheel.png" alt="Screenshot" style= "width:400px"; "border: 3px solid #4CAF50; border-radius: 8px;">
 </p>
 
 8. After translation completes, click **Generate Audio**.
    <p align="center">
-  <img src="screenshots/FileUpload_Translation_output_generated.png" alt="Screenshot" style= "width:250px"; "border: 3px solid #4CAF50; border-radius: 8px;">
+  <img src="screenshots/FileUpload_Translation_output_generated.png" alt="Screenshot" style= "width:400px"; "border: 3px solid #4CAF50; border-radius: 8px;">
 </p>
 
 10. Download the MP3 audio by clicking **Download Audio**.
  <p align="center">
-  <img src="screenshots/FileUpload_Audio_Generatede.png" alt="Screenshot" style= "width:250px"; border: 3px solid #4CAF50; border-radius: 8px;">
+  <img src="screenshots/FileUpload_Audio_Generatede.png" alt="Screenshot" style= "width:400px"; border: 3px solid #4CAF50; border-radius: 8px;">
 </p>
 
 ## Project Structure
