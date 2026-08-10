@@ -39,11 +39,11 @@ def translate_text(user_input, selected_label, selected_code, retries=3, backoff
                 time.sleep(wait_time)
                 continue
 
-            # Other API errors
-            return f"API Error: {e}"
+             return "⚠️ The translation service is temporarily unavailable. Please try again."
 
-        except Exception as e:
-            return f"Unexpected error: {e}"
+        except Exception:
+            return "⚠️ An unexpected error occurred. Please try again."
 
-    return "Translation failed after multiple retries due to rate limits."
+    # If all retries fail
+    return "⚠️ Translation failed due to API rate limits. Please wait a moment and try again."
 
