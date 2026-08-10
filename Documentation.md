@@ -29,7 +29,39 @@ Gemini API / File Parsers
 - Services handle translation, TTS, and file extraction  
 
 ---
+## 3.  Internal Architecture
 
+**UI Layer (tabs/)**
+- Handles user input
+- Displays text, translations, and audio
+- Calls button handlers
+
+**Button Logic (buttons/)**
+1. translate_button.py
+- Reads text
+- Calls translation service
+- Stores translated text
+
+2. generate_audio_button.py
+- Reads translated text
+- Calls TTS service
+- Stores audio bytes
+
+**Backend Services (services/)**
+1. translation_service.py → Gemini translation
+2. text_to_speech.py → TTS (gTTS)
+3. text_extraction_service.py → PDF/CSV/Excel parsing
+
+**API Layer (api/)**
+gemini_client.py
+- Tries to load the Gemini API key
+   - First from environment variables
+   - Then from Streamlit secrets
+- Returns the key if found
+- Creates a Gemini client
+
+**Utilities (utils/)**
+PDF, Excel, CSV parsing helpers
 ## 3. Module Responsibilities
 
 ### **app.py**
@@ -93,7 +125,7 @@ Gemini API / File Parsers
 ## 4. Data Flow
 
 ### **A. Text Translation Flow**
-
+```
 User enters text
 ↓
 text_translate_tab.py
@@ -105,11 +137,12 @@ translation_service.py → Gemini API
 Translated text stored in st.session_state.translated_output
 ↓
 Displayed in UI
-
+```
 
 ---
 
 ### **B. File Upload Flow**
+```
 User uploads file
 ↓
 file_upload_tab.py
@@ -123,10 +156,11 @@ Extracted text stored in session state
 translate_button.py → translation_service.py
 ↓
 Translated text displayed in UI
-
+```
 ---
 
 ### **C. Audio Generation Flow**
+```
 User clicks Generate Audio
 ↓
 generate_audio_button.py
@@ -136,7 +170,7 @@ text_to_speech.py → gTTS
 MP3 audio stored in st.session_state.audio_file
 ↓
 Download button provides MP3 file
-
+```
 
 ---
 ```python
