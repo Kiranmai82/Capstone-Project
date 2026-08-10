@@ -202,6 +202,7 @@ response = client.models.generate_content(
 - gTTS supports many languages but not all
 
 **Internet Requirement**
+
 Gemini API and gTTS both require internet access
 
 ## 7. Limitations
