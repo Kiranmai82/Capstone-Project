@@ -63,6 +63,74 @@ gemini_client.py
 **Utilities (utils/)**
 PDF, Excel, CSV parsing helpers
 
+   ##Diagrammatic representation of Internal Architecture##
+
+                            ┌──────────────────────────────┐
+                         │            UI Layer           │
+                         │          (tabs/)              │
+                         ├──────────────────────────────┤
+                         │ - User Input Fields           │
+                         │ - Display Text & Audio        │
+                         │ - Buttons (Translate, TTS)    │
+                         └──────────────┬───────────────┘
+                                        │ calls
+                                        ▼
+                     ┌────────────────────────────────────────┐
+                     │             Button Logic                │
+                     │                (buttons/)               │
+                     ├────────────────────────────────────────┤
+                     │ translate_button.py                    │
+                     │   - Reads text                         │
+                     │   - Calls translation_service          │
+                     │   - Stores translated text             │
+                     │                                        │
+                     │ generate_audio_button.py               │
+                     │   - Reads translated text              │
+                     │   - Calls TTS service                  │
+                     │   - Stores audio bytes                 │
+                     └──────────────┬─────────────────────────┘
+                                    │ uses
+                                    ▼
+         ┌────────────────────────────────────────────────────────────┐
+         │                        Backend Services                     │
+         │                            (services/)                      │
+         ├────────────────────────────────────────────────────────────┤
+         │ translation_service.py                                      │
+         │   → Uses gemini_client.py                                   │
+         │   → Calls Gemini translation API                            │
+         │                                                              │
+         │ text_to_speech.py                                           │
+         │   → gTTS or other TTS engine                                │
+         │                                                              │
+         │ text_extraction_service.py                                  │
+         │   → PDF parsing                                              │
+         │   → CSV parsing                                              │
+         │   → Excel parsing                                            │
+         └──────────────┬──────────────────────────────────────────────┘
+                        │ depends on
+                        ▼
+         ┌────────────────────────────────────────────────────────────┐
+         │                           API Layer                        │
+         │                             (api/)                          │
+         ├────────────────────────────────────────────────────────────┤
+         │ gemini_client.py                                           │
+         │   - Load API key from env vars                             │
+         │   - Fallback: Streamlit secrets                            │
+         │   - Create Gemini client                                   │
+         └──────────────┬──────────────────────────────────────────────┘
+                        │ uses
+                        ▼
+         ┌────────────────────────────────────────────────────────────┐
+         │                           Utilities                        │
+         │                             (utils/)                        │
+         ├────────────────────────────────────────────────────────────┤
+         │ pdf_utils.py                                               │
+         │ excel_utils.py                                             │
+         │ csv_utils.py                                               │
+         │ common_helpers.py                                          │
+         └────────────────────────────────────────────────────────────┘
+
+
 ## 4. Module Responsibilities
 
 ### **app.py**
