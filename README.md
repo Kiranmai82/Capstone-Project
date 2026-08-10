@@ -111,8 +111,8 @@ If the key is missing or invalid, you will see an error message in the UI.
   - Browse Files button  
   - Language dropdown
   - Translate button
-  - Generate audio button (disabled)
-  - Download audio button(disabled)
+  - Disabled Generate audio button 
+  - Disabled Download audio button 
 
 ## Usage
 
