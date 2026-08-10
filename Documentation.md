@@ -63,7 +63,7 @@ gemini_client.py
 **Utilities (utils/)**
 PDF, Excel, CSV parsing helpers
 
-   ##Diagrammatic representation of Internal Architecture##
+   ##Diagrammatic representation of Internal Architecture
 
                             ┌──────────────────────────────┐
                          │            UI Layer           │
