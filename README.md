@@ -105,7 +105,8 @@ If the key is missing or invalid, you will see an error message in the UI.
    **streamlit run app/frontend/app.py**
 
 - Confirm the UI Loads
-  
+  ![Homepage](screenshots/Homepage.png)
+    
   You should see:
   - Text translation tab
   - File upload tab
