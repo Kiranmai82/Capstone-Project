@@ -15,20 +15,6 @@ from app.frontend.buttons.generate_audio_button import generate_audio
 from gtts import gTTS
 from app.services.text_to_speech import text_to_speech_conversion
 
-# For opening drop-down menu downward
-st.markdown("""
-<style>
-/* Force Streamlit selectbox dropdown to open downward */
-div[data-baseweb="select"] > div {
-    flex-direction: column !important;
-}
-
-div[data-baseweb="popover"] {
-    top: 100% !important;
-    bottom: auto !important;
-}
-</style>
-""", unsafe_allow_html=True)
 
 # Initialize session widget keys
 
