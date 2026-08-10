@@ -46,4 +46,5 @@ def translate_text(user_input, selected_label, selected_code, retries=3, backoff
 
     # If all retries fail
     return "⚠️ Translation failed due to API rate limits. Please wait a moment and try again."
+    
 
