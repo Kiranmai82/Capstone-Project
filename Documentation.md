@@ -62,7 +62,8 @@ gemini_client.py
 
 **Utilities (utils/)**
 PDF, Excel, CSV parsing helpers
-## 3. Module Responsibilities
+
+## 4. Module Responsibilities
 
 ### **app.py**
 - Initializes Streamlit  
@@ -122,7 +123,7 @@ PDF, Excel, CSV parsing helpers
 
 ---
 
-## 4. Data Flow
+## 5. Data Flow
 
 ### **A. Text Translation Flow**
 ```
