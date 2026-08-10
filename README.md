@@ -3,7 +3,7 @@ Edureka Capstone Project
 
 # Translator + Audio Generator
 
-A Streamlit application that translates text or uploaded documents into another language and generates spoken audio in MP3 format.
+A Streamlit application that translates text or uploaded documents into another language and generates audio in MP3 format.
 
 ## Project Overview
 
@@ -11,7 +11,7 @@ This app allows users to:
 - enter text manually,
 - upload supported files (`txt`, `pdf`, `csv`, `xls`),
 - translate the text to a selected target language,
-- generate spoken audio from the translated text,
+- generate audio from the translated text,
 - download the resulting MP3 audio.
 
 ## Features
@@ -71,7 +71,7 @@ This app allows users to:
 
 ## Setting Up the Gemini API Key
 
-This application requires a Google Gemini API key to perform translation and text‑to‑speech operations.
+This application requires a Google Gemini API key to perform text translation operations.
 
 Step 1 — Get Your API Key
 Go to: https://ai.google.dev
@@ -84,11 +84,11 @@ Copy the key
 
 Step 2 -- Set your Gemini API key as an environment variable:
 
-For Windows (PowerShell)
+**For Windows (PowerShell)**
 
 setx GEMINI_API_KEY "your_api_key_here"
 
-For macOS / Linux
+**For macOS / Linux**
 
 export GEMINI_API_KEY="your_api_key_here"
 
@@ -106,18 +106,13 @@ If the key is missing or invalid, you will see an error message in the UI.
 
 - Confirm the UI Loads
   You should see:
-
-  Text translation tab
-
-  File upload tab
-  
-  Language dropdown
-
-  Translate button
-
-  Generate audio button
-
-  Download audio button
+  - Text translation tab
+  - File upload tab
+  - Browse Files button  
+  - Language dropdown
+  - Translate button
+  - Generate audio button (disabled)
+  - Download audio button(disabled)
 
 ## Usage
 
@@ -140,59 +135,47 @@ If the key is missing or invalid, you will see an error message in the UI.
 ```  
 Capstone_Project/
 │
-├── app.py                         # Main Streamlit application
+├── frontend/                      # All Streamlit UI + interaction layer
+│   │
+│   ├── app.py                     # Main Streamlit application
+│   │
+│   ├── tabs/                      # UI tabs for Streamlit
+│   │   ├── file_upload_tab.py     # File upload + extraction + translation UI
+│   │   └── text_translate_tab.py  # Text input + translation UI
+│   │
+│   └── buttons/                   # Button logic (translate + audio)
+│       ├── translate_button.py
+│       └── generate_audio_button.py
 │
-├── tabs/                          # UI tabs for Streamlit
-│   ├── file_upload_tab.py         # File upload + extraction + translation UI
-│   └── text_translate_tab.py      # Text input + translation UI
+├── api/                           # External API clients
+│   └── gemini_client.py           # Gemini API client setup
 │
-├── buttons/                       # Button logic (translate + audio)
-│   ├── translate_button.py
-│   └── generate_audio_button.py
+├── config/                        # Configuration files (constants, mappings)
+│   └── languages.py               # Language code mappings
 │
 ├── services/                      # Backend logic (no Streamlit)
-│   ├── translation_service.py     # Gemini translation logic
+│   ├── translation_service.py     # Uses gemini_client for translation
 │   ├── text_to_speech.py          # gTTS audio generation
 │   ├── text_extraction_service.py # PDF/CSV/Excel extraction
-│   └── gemini_client.py           # Gemini API client setup
 │
 ├── utils/                         # Helper utilities
 │   ├── pdf_utils.py               # PDF parsing helpers
 │   ├── excel_utils.py             # Excel parsing helpers
 │   └── csv_utils.py               # CSV parsing helpers
 │
-├── languages.py                   # Language code mappings
-│
 ├── requirements.txt               # Python dependencies
-└── README.md                      # Project documentation
+├── README.md                      # High-level project overview
+└── Documentation.md               # Detailed technical documentation
+
 ```  
 
-## How the App Works Internally
+## Internal Architecture (Quick Overview)
 
-**UI Layer (tabs/)**
-- Handles user input
-- Displays text, translations, and audio
-- Calls button handlers
+- Frontend → UI tabs + buttons
+- Services → translation, extraction, audio
+- API → Gemini client
+- Utils → file parsing helpers
 
-**Button Logic (buttons/)**
-1. translate_button.py
-- Reads text
-- Calls translation service
-- Stores translated text
-
-2. generate_audio_button.py
-- Reads translated text
-- Calls TTS service
-- Stores audio bytes
-
-**Backend Services (services/)**
-1. translation_service.py → Gemini translation
-2. text_to_speech.py → TTS (gTTS or Gemini)
-3. text_extraction_service.py → PDF/CSV/Excel parsing
-4. gemini_client.py → API client setup
-
-**Utilities (utils/)**
-PDF, Excel, CSV parsing helpers
 
 ## Technologies Used
 
@@ -238,7 +221,7 @@ The app includes:
 
 * Some languages may have limited TTS support
 
-Internet Requirement
+## Internet Requirement
 Gemini API calls require an active internet connection
 
 ## Limitations
@@ -252,16 +235,16 @@ Gemini API calls require an active internet connection
 
 - CSV/Excel extraction assumes readable text content
 
-- Translation accuracy depends on choosem Gemini model.
+- Translation accuracy depends on chosen Gemini model.
 
 ## Challenges Faced During Development
 
 1. Handling Multiple File Types
-Extracting text from:
-PDFs
-CSVs
-Excel files
-required separate parsing logic and error handling.
+   Extracting text from:
+   PDFs
+   CSVs
+   Excel files
+   required separate parsing logic and error handling.
 
 2. Managing Session State
    Streamlit session state needed careful handling to:
@@ -324,3 +307,5 @@ Whenever you push changes to GitHub:
 Working public URL: https://capstone-project-cyqesmecxmwzkbv8tv3capp.streamlit.app/ 
 
 No manual deployment commands are required.
+
+**Note:** Due to limitations with free tier model, app can throw 429- Too many requests error.
