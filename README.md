@@ -105,8 +105,10 @@ If the key is missing or invalid, you will see an error message in the UI.
    **streamlit run app/frontend/app.py**
 
 - Confirm the UI Loads
-  ![Homepage](screenshots/Homepage.png)
-    
+  <p align="center">
+  <img src="screenshots/Homepage.png" alt="Screenshot" style="border: 3px solid #4CAF50; border-radius: 8px;">
+</p>
+
   You should see:
   - Text translation tab
   - File upload tab
@@ -119,19 +121,33 @@ If the key is missing or invalid, you will see an error message in the UI.
 ## Usage
 
 1. Open the Streamlit app in your browser.
-
+   Working public URL: https://capstone-project-cyqesmecxmwzkbv8tv3capp.streamlit.app/
 2. Choose one tab:
    - **Upload a File** to translate text from a file.
    - **Translate Text** to enter text manually.
+   <p align="center">
+  <img src="screenshots/Homepage.png" alt="Screenshot" style="border: 3px solid #4CAF50; border-radius: 8px;">
+</p>
 
-3. Select the target output language.
+4. Select the target output language.
+   <p align="center">
+  <img src="screenshots/drop-down_language.png" alt="Screenshot" style="border: 3px solid #4CAF50; border-radius: 8px;">
+</p>
 
-4. Click **Translate**.
+6. Click **Translate**.
+   <p align="center">
+  <img src="screenshots/Text Translating_spin_wheel.png" alt="Screenshot" style="border: 3px solid #4CAF50; border-radius: 8px;">
+</p>
 
-5. After translation completes, click **Generate Audio**.
+8. After translation completes, click **Generate Audio**.
+   <p align="center">
+  <img src="screenshots/FileUpload_Translation_output_generated.png" alt="Screenshot" style="border: 3px solid #4CAF50; border-radius: 8px;">
+</p>
 
-6. Download the MP3 audio by clicking **Download Audio**.
-
+10. Download the MP3 audio by clicking **Download Audio**.
+ <p align="center">
+  <img src="screenshots/FileUpload_Audio_Generatede.png" alt="Screenshot" style="border: 3px solid #4CAF50; border-radius: 8px;">
+</p>
 
 ## Project Structure
 ```  
