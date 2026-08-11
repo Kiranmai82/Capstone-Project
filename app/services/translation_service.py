@@ -39,7 +39,7 @@ def translate_text(user_input, selected_label, selected_code, retries=3, backoff
                 time.sleep(wait_time)
                 continue
 
-             return "⚠️ The translation service is temporarily unavailable. Please try again."
+            return "⚠️ The translation service is temporarily unavailable. Please try again."
 
         except Exception:
             return "⚠️ An unexpected error occurred. Please try again."
