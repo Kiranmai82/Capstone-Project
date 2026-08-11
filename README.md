@@ -54,57 +54,58 @@ This app allows users to:
    cd "Capstone_Project"
 
 2. Create and activate a virtual environment:
+   
     Windows:
 
-    python -m venv .venv
-    .venv\Scripts\activate
+       python -m venv .venv
+       .venv\Scripts\activate
 
     macOS/Linux:
 
-    python -m venv .venv
-    source .venv/bin/activate
+       python -m venv .venv
+       source .venv/bin/activate
 
-3. Install the dependencies:
+4. Install the dependencies:
 
-   pip install -r requirements.txt
+         pip install -r requirements.txt
 
 
 ## Setting Up the Gemini API Key
 
 This application requires a Google Gemini API key to perform text translation operations.
 
-Step 1 — Get Your API Key
+1.  Get Your API Key
 
-Go to: https://ai.google.dev
+      - Go to: https://ai.google.dev
 
-Sign in with your Google account
+      - Sign in with your Google account
 
-Create a new API key
+      - Create a new API key
 
-Copy the key
+      - Copy the key
 
-Step 2 -- Set your Gemini API key as an environment variable:
+2.  Set your Gemini API key as an environment variable:
 
-**For Windows (PowerShell)**
+   - **For Windows (PowerShell)**
 
-setx GEMINI_API_KEY "your_api_key_here"
+         setx GEMINI_API_KEY "your_api_key_here"
 
-**For macOS / Linux**
+   - **For macOS / Linux**
 
-export GEMINI_API_KEY="your_api_key_here"
+         export GEMINI_API_KEY="your_api_key_here"
 
-If you use Streamlit secrets in the code, you can also configure GEMINI_API_KEY using the following steps:
+   - If you using Streamlit secrets in the code, you can also configure GEMINI_API_KEY using the following steps:
 
-   1. Create a folder with name **.streamlit** in the root folder
-   2. Create a file named **secrets.toml** inside .streamlit folder
-   3. Use the created gemini API key in the secrets.toml file as below
+      1. Create a folder with name **.streamlit** in the root folder
+      2. Create a file named **secrets.toml** inside .streamlit folder
+      3. Use the created gemini API key in the secrets.toml file as below
       
-      GEMINI_API_KEY = "your_api_key_here"
+               GEMINI_API_KEY = "your_api_key_here"
 
-Step 3 -- Verify the Key
+3.  Verify the Key
 
-The app checks for the API key at startup.
-If the key is missing or invalid, you will see an error message in the UI.
+      The app checks for the API key at startup.
+      If the key is missing or invalid, you will see an error message in the UI.
 
 ## Running the App
 
@@ -129,16 +130,28 @@ If the key is missing or invalid, you will see an error message in the UI.
 ## Usage
 
 1. Open the Streamlit app in your browser.
+   
    Working public URL: https://capstone-project-cyqesmecxmwzkbv8tv3capp.streamlit.app/
+   
 2. Choose one tab:
-   - **Upload a File** to translate text from a file.
-   - **Translate Text** to enter text manually.
- 
-<p align="center">
-  <img src="screenshots/Homepage.png" alt="Screenshot" style= "width:500px"; border: 3px solid #4CAF50; border-radius: 8px;">
-</p>
 
-3. Select the target output language.
+   - **Upload a File** to translate text from a file. 
+
+     - If using **Upload a File** tab , click "Browse Files" button to select the file for translation and skip to next step 3
+      
+<p align="center">
+  <img src="screenshots/BrowseFiles.png" alt="Screenshot" style= "width:500px"; border: 3px solid #4CAF50; border-radius: 8px;">
+</p> 
+   
+   - **Translate Text** to enter text manually.
+         
+      - If using **Translate Text**, enter text in the "Enter text you wish to translate" area and skip to next step 3
+   
+<p align="center">
+  <img src="screenshots/TextField.png" alt="Screenshot" style= "width:500px"; border: 3px solid #4CAF50; border-radius: 8px;">
+</p>
+ 
+3. Select the target output language from the ' Select Output Language' drop-down menu
 
 <p align="center">
   <img src="screenshots/drop-down_language.png" alt="Screenshot" style= "width:500px"; border: 3px solid #4CAF50; border-radius: 8px;">
