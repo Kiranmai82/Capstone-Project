@@ -74,6 +74,7 @@ This app allows users to:
 This application requires a Google Gemini API key to perform text translation operations.
 
 Step 1 — Get Your API Key
+
 Go to: https://ai.google.dev
 
 Sign in with your Google account
@@ -93,12 +94,15 @@ setx GEMINI_API_KEY "your_api_key_here"
 export GEMINI_API_KEY="your_api_key_here"
 
 If you use Streamlit secrets in the code, you can also configure GEMINI_API_KEY using the following steps:
+
    1. Create a folder with name **.streamlit** in the root folder
    2. Create a file named **secrets.toml** inside .streamlit folder
    3. Use the created gemini API key in the secrets.toml file as below
-   GEMINI_API_KEY = "your_api_key_here"
+      
+      GEMINI_API_KEY = "your_api_key_here"
 
 Step 3 -- Verify the Key
+
 The app checks for the API key at startup.
 If the key is missing or invalid, you will see an error message in the UI.
 
