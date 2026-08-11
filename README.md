@@ -8,11 +8,11 @@ A Streamlit application that translates text or uploaded documents into another 
 ## Project Overview
 
 This app allows users to:
-- enter text manually,
-- upload supported files (`txt`, `pdf`, `csv`, `xls`),
-- translate the text to a selected target language,
-- generate audio from the translated text,
-- download the resulting MP3 audio.
+- Enter text manually,
+- Upload supported files (`txt`, `pdf`, `csv`, `xls`),
+- Translate the text to a selected target language,
+- Generate audio from the translated text,
+- Download the resulting MP3 audio
 
 ## Features
 
@@ -114,7 +114,7 @@ If the key is missing or invalid, you will see an error message in the UI.
   - File upload tab
   - Browse Files button  
   - Language dropdown
-  - Translate button
+  - Active Translate button
   - Disabled Generate audio button 
   - Disabled Download audio button 
 
@@ -265,15 +265,15 @@ Gemini API calls require an active internet connection
    PDFs
    CSVs
    Excel files
-   required separate parsing logic and error handling.
+   Required separate parsing logic and error handling.
 
 2. Managing Session State
    Streamlit session state needed careful handling to:
 
-  - store extracted text
-  - store translated text
-  - store audio bytes
-  - avoid losing data between button clicks
+  - Store extracted text
+  - Store translated text
+  - Store audio bytes
+  - Avoid losing data between button clicks
 
 3. Managing Streamlit widget keys:
   - Multiple tabs and repeated widgets required unique keys
@@ -283,9 +283,9 @@ Gemini API calls require an active internet connection
 
 4. Gemini API Response Handling
    Ensuring:
-  - correct prompt formatting
-  - safe error handling
-  - stable API client initialization
+  - Correct prompt formatting
+  - Safe error handling
+  - Stable API client initialization
 
 ## Deployment
 This application is deployed on Streamlit Cloud.
